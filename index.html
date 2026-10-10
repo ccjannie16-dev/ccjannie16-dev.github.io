@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xinyi Wang Portfolio</title>
+<meta name="description" content="Xinyi Wang, UX and product designer working on AI products: inclusive speech AI, AI explainability, and interactive narrative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long reading column of case studies; each study opens with a meta strip, then a wide image, then a two-column narrative. Palette borrows Aftercolor's gray world with Bibo's blue as the single accent and lamp-amber for small highlights. */
+:root{
+  --bg:#F2F4F5;
+  --surface:#FFFFFF;
+  --fg:#1C2227;
+  --muted:#5A6670;
+  --line:#D5DBDF;
+  --accent:#2C6A88;
+  --warm:#B5752C;
+  --font-display:"Gloock", "Georgia", "Times New Roman", serif;
+  --font-body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1:clamp(.8rem,.78rem + .1vw,.86rem);
+  --step-0:clamp(1rem,.97rem + .15vw,1.08rem);
+  --step-1:clamp(1.2rem,1.1rem + .4vw,1.4rem);
+  --step-2:clamp(1.6rem,1.35rem + 1vw,2.2rem);
+  --step-3:clamp(2.2rem,1.7rem + 2.2vw,3.6rem);
+  --step-4:clamp(2.8rem,2rem + 4vw,5.4rem);
+  --radius:6px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111518; --surface:#181D21; --fg:#E4E9EC; --muted:#97A3AB; --line:#29323A; --accent:#72B4D3; --warm:#E1A75C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111518; --surface:#181D21; --fg:#E4E9EC; --muted:#97A3AB; --line:#29323A; --accent:#72B4D3; --warm:#E1A75C; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:var(--step-0);line-height:1.6;padding-inline:clamp(16px,4vw,48px);padding-block:0}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin-inline:auto}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(-1 * clamp(16px,4vw,48px));padding-inline:clamp(16px,4vw,48px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.mark{font-family:var(--font-display);font-size:1.15rem;color:var(--fg);text-decoration:none}
+.top nav{display:flex;gap:clamp(14px,3vw,28px);flex-wrap:wrap}
+.top nav a{font-family:var(--font-mono);font-size:var(--step--1);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--fg)}
+
+/* intro */
+.intro{padding-block:clamp(48px,9vw,112px) clamp(40px,6vw,72px);display:grid;gap:28px}
+.intro h1{font-family:var(--font-display);font-weight:400;font-size:var(--step-4);line-height:1.02;margin:0;letter-spacing:-.01em;text-wrap:balance;max-width:14ch}
+.intro .lede{font-size:var(--step-1);line-height:1.5;max-width:40ch;margin:0;color:var(--fg)}
+.intro .lede em{font-style:normal;color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin:0;padding:0;list-style:none;font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted)}
+.facts li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--warm);margin-right:8px;vertical-align:middle}
+
+.label{font-family:var(--font-mono);font-size:var(--step--1);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+
+/* index of work */
+.index{border-top:1px solid var(--fg);padding-block:20px 8px}
+.index ol{list-style:none;margin:12px 0 0;padding:0;display:grid}
+.index li a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;padding-block:16px;border-bottom:1px solid var(--line);color:var(--fg);text-decoration:none;align-items:baseline}
+.index li a:hover .t{color:var(--accent)}
+.index .t{font-family:var(--font-display);font-size:var(--step-2);line-height:1.15;transition:color .2s}
+.index .k{font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted);text-align:right}
+.index .d{grid-column:1 / -1;color:var(--muted);font-size:var(--step-0);max-width:62ch}
+
+/* case study */
+.case{padding-block:clamp(64px,10vw,120px) 0;scroll-margin-top:64px}
+.case-head{display:grid;gap:18px;margin-bottom:28px}
+.case-head h2{font-family:var(--font-display);font-weight:400;font-size:var(--step-3);line-height:1.05;margin:0;text-wrap:balance}
+.case-head .sum{font-size:var(--step-1);line-height:1.5;max-width:52ch;margin:0}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px 24px;margin:0;padding-block:16px;border-block:1px solid var(--line)}
+.meta div{min-width:0}
+.meta dt{font-family:var(--font-mono);font-size:var(--step--1);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:4px 0 0;font-size:.95rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--fg);border-radius:999px;color:var(--fg);text-decoration:none;font-weight:500;font-size:.95rem;background:transparent}
+.btn.primary{background:var(--fg);color:var(--bg)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn .arrow{font-family:var(--font-mono)}
+
+figure{margin:0}
+.wide{margin-top:clamp(28px,4vw,48px)}
+.wide img{border-radius:var(--radius);border:1px solid var(--line);width:100%}
+.wide-scroll{overflow-x:auto}
+.hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.dark-plate{background:#000;border-color:#000}
+.story li b{font-weight:600}
+figcaption{font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted);margin-top:10px;line-height:1.5}
+
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);margin-top:clamp(32px,5vw,56px)}
+.story section{min-width:0}
+.story h3{font-family:var(--font-body);font-weight:600;font-size:var(--step-0);margin:0 0 8px;letter-spacing:.01em}
+.story p{margin:0 0 1em;max-width:62ch}
+.story ul{margin:0 0 1em;padding-left:1.1em;max-width:62ch}
+.story li{margin-bottom:.45em}
+.story li::marker{color:var(--warm)}
+@media (max-width:760px){.story{grid-template-columns:minmax(0,1fr)}}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:clamp(28px,4vw,48px)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.grid2 figure,.grid3 figure{min-width:0}
+.grid2 img,.grid3 img{border-radius:var(--radius);border:1px solid var(--line);aspect-ratio:16/9;object-fit:cover;width:100%}
+#next-token .grid3 img{aspect-ratio:850/788;object-fit:cover;object-position:top}
+@media (max-width:640px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+
+.pull{font-family:var(--font-display);font-size:var(--step-2);line-height:1.25;margin:clamp(32px,5vw,56px) 0 0;max-width:30ch;text-wrap:balance}
+.pull span{color:var(--muted)}
+
+/* next-token demo panel */
+.probe{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,3vw,32px);display:grid;gap:22px}
+.probe-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.probe-tabs button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.probe-tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.prompt{font-family:var(--font-mono);font-size:clamp(.92rem,.85rem + .4vw,1.1rem);line-height:1.7;margin:0;overflow-wrap:anywhere}
+.prompt .tok{border-bottom:2px solid var(--line);padding-bottom:1px;margin-right:2px}
+.prompt .next{color:var(--accent);border-bottom:2px solid var(--accent)}
+.bars{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.bars li{display:grid;grid-template-columns:72px minmax(0,1fr) 64px;gap:12px;align-items:center;font-variant-numeric:tabular-nums}
+.bars .w{font-family:var(--font-mono);font-size:.95rem}
+.bars .track{height:14px;background:var(--bg);border-radius:3px;overflow:hidden}
+.bars .fill{height:100%;background:var(--accent);border-radius:3px;transition:width .5s ease}
+.bars li:nth-child(n+2) .fill{background:var(--muted);opacity:.55}
+.bars .p{font-family:var(--font-mono);font-size:.9rem;text-align:right}
+.probe-note{font-size:.92rem;color:var(--muted);margin:0;max-width:62ch}
+
+/* placeholder for screens being added */
+.pending{border:1px dashed var(--line);border-radius:var(--radius);aspect-ratio:16/9;display:grid;place-items:center;text-align:center;padding:24px;background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 35%,transparent) 14px 15px)}
+.pending p{margin:0;font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted);max-width:40ch}
+
+/* more work */
+.more{padding-block:clamp(72px,10vw,128px) 0}
+.more h2,.about h2{font-family:var(--font-display);font-weight:400;font-size:var(--step-3);margin:0 0 24px;line-height:1.05}
+.more-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+.more-list li{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) auto;gap:8px 32px;padding-block:22px;border-bottom:1px solid var(--line);align-items:baseline}
+.more-list h3{margin:0;font-size:var(--step-1);font-weight:600;line-height:1.3}
+.more-list .when{display:block;font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted);font-weight:400;margin-top:4px}
+.more-list p{margin:0;color:var(--muted);max-width:60ch}
+.more-list .go{font-family:var(--font-mono);font-size:var(--step--1);white-space:nowrap}
+@media (max-width:760px){.more-list li{grid-template-columns:minmax(0,1fr)}}
+
+/* about */
+.about{padding-block:clamp(72px,10vw,128px) clamp(56px,8vw,96px)}
+.about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,5vw,64px)}
+.about-grid > *{min-width:0}
+.about p{max-width:60ch;margin:0 0 1em}
+.contact{border-top:1px solid var(--fg);padding-top:16px;display:grid;gap:18px}
+.contact .row{display:grid;gap:4px}
+.email{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.email code{font-family:var(--font-mono);font-size:1rem;user-select:all;overflow-wrap:anywhere}
+.copy{font:inherit;font-size:.82rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+.skills{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.skills li{font-size:.95rem}
+.skills b{font-weight:600}
+@media (max-width:760px){.about-grid{grid-template-columns:minmax(0,1fr)}}
+footer{border-top:1px solid var(--line);padding-block:20px 32px;font-family:var(--font-mono);font-size:var(--step--1);color:var(--muted)}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Xinyi Wang</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#more">More</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <section class="intro" aria-labelledby="hi">
+    <p class="label">UX and product design · Ithaca, NY</p>
+    <h1 id="hi">Designing AI that people can read.</h1>
+    <p class="lede">I'm Xinyi, a designer with research training who builds working prototypes. My projects are about making AI <em>legible</em>: who it serves, what it is guessing, and how it should feel to use.</p>
+    <ul class="facts">
+      <li>MPS Information Science, Cornell, Dec 2026</li>
+      <li>BS Information Sciences, UIUC</li>
+      <li>English and Mandarin</li>
+    </ul>
+  </section>
+
+  <section class="index" id="work" aria-labelledby="work-h">
+    <p class="label" id="work-h">Selected work</p>
+    <ol>
+      <li><a href="#aimpower"><span class="t">AImpower: SLP dashboard</span><span class="k">UX · 2025</span><span class="d">Designing the clinician side of an inclusive speech-AI tool for people who stutter.</span></a></li>
+      <li><a href="#next-token"><span class="t">Next-Token Prediction Inspector</span><span class="k">AI explainability · 2026</span><span class="d">A browser tool that shows what a language model is weighing before it writes a word.</span></a></li>
+      <li><a href="#aftercolor"><span class="t">Aftercolor</span><span class="k">Narrative game · 2026</span><span class="d">A short game about a home-care robot, where acts of care bring color back to a gray apartment.</span></a></li>
+    </ol>
+  </section>
+
+  <!-- ===================== AIMPOWER ===================== -->
+  <article class="case" id="aimpower" aria-labelledby="aim-h">
+    <div class="case-head">
+      <p class="label">Case study · UX / product design</p>
+      <h2 id="aim-h">AImpower: a dashboard for speech-language pathologists</h2>
+      <p class="sum">AImpower.org is a nonprofit building speech AI that works for people who stutter. I designed the clinician side: the web app a speech-language pathologist (SLP) uses to set goals with clients and follow their progress between sessions.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>UX / product designer, research contributor</dd></div>
+        <div><dt>Timeline</dt><dd>Sep to Dec 2025</dd></div>
+        <div><dt>Team</dt><dd>Nonprofit product team, developers, community members</dd></div>
+        <div><dt>Tools</dt><dd>Figma, interviews, usability testing</dd></div>
+      </dl>
+    </div>
+
+    <figure>
+      <div class="hero-img dark-plate"><img src="img/aim_device_dashboard.jpg" alt="AImpower SLP dashboard on a laptop: client totals, goal achievement, an improvement chart and unread client updates." width="1200" height="727"></div>
+      <figcaption>SLP home. Totals, who needs attention, progress over time, and the latest client reflections.</figcaption>
+    </figure>
+
+    <div class="story">
+      <section>
+        <h3>The problem</h3>
+        <p>Most speech technology is trained on fluent speech, so it works worst for the people who stutter. AImpower's client tool supports people during video calls and lets them log how meetings went. Their speech-language pathologists had no place to set goals with a client or see that data between sessions.</p>
+        <h3>What I designed</h3>
+        <ul>
+          <li><b>SLP dashboard:</b> caseload totals, clients who need attention, goal achievement over time, and the newest client reflections.</li>
+          <li><b>Clients overview:</b> a table of every client with status, last session, last goal update and goal completion.</li>
+          <li><b>Create goal flow:</b> three steps to set a goal, pick how it is measured, and review it before it goes to the client.</li>
+          <li><b>Insights:</b> confidence, anxiety, open stuttering and goal trends, viewable by week, month or three months.</li>
+        </ul>
+        <p>I turned interviews and community feedback into wireframes, built the high-fidelity screens in Figma, iterated from usability findings, and prepared handoff files for developers.</p>
+      </section>
+      <section>
+        <h3>Design decisions</h3>
+        <ul>
+          <li><b>Open stuttering counts as progress.</b> The goal library includes goals like "Stutter openly 5 times," and Insights maps the days a client stuttered openly on a calendar. Success means speaking with confidence, not sounding fluent.</li>
+          <li><b>Start from a library, not a blank box.</b> SLPs pick from 20+ common therapist goals sorted into emotional, cognitive, utility and speech categories, or reuse a recent goal, then edit it.</li>
+          <li><b>Show the metric before choosing it.</b> Each measurement type (progress bar, 1 to 5 rating, emoji scale, word cloud, voice note and more) shows a live preview, with suggested metrics for the goal.</li>
+          <li><b>Review on the client's screen.</b> The last step previews the goal as the client will see it on their phone, so both sides of the product are designed together.</li>
+          <li><b>Zoom levels for time.</b> Week, month and three-month views change the heat map from days to weeks, so a short dip does not hide long-term growth.</li>
+        </ul>
+      </section>
+    </div>
+
+    <figure class="wide">
+      <img src="img/aim_create_goal.jpg" alt="Create goal flow in three steps: choose a goal from a library, choose a metric with a live preview, and review the goal on a phone preview." loading="lazy" width="1734" height="399">
+      <figcaption>Create goal flow. Pick a goal from the library, choose how to measure it, then review it as the client will see it.</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <figure><img src="img/aim_clients.jpg" alt="Clients table with status tags, last session, last goal update and segmented goal-completion bars." loading="lazy" width="1368" height="857"><figcaption>Clients overview. Status and goal completion at a glance.</figcaption></figure>
+      <figure><img src="img/aim_insights.jpg" alt="Client Insights with confidence, anxiety, open stuttering and role skillfulness cards, a trend chart and a calendar heat map of open stuttering." loading="lazy" width="1368" height="857"><figcaption>Client insights. Trends plus a calendar of days the client stuttered openly.</figcaption></figure>
+    </div>
+
+    <figure class="wide">
+      <img src="img/aim_client_insights_ranges.jpg" alt="Three Insights screens for the week, month and three-month ranges, with the heat map changing from days to weeks." loading="lazy" width="1711" height="396">
+      <figcaption>Insights by week, month and three months.</figcaption>
+    </figure>
+  </article>
+
+  <!-- ===================== NEXT TOKEN ===================== -->
+  <article class="case" id="next-token" aria-labelledby="nt-h">
+    <div class="case-head">
+      <p class="label">Case study · AI explainability</p>
+      <h2 id="nt-h">Next-Token Prediction Inspector</h2>
+      <p class="sum">When I use ChatGPT I only see the finished answer. I made a web app that runs a real small language model in the browser and shows the choices it scores before it writes the next word.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Concept, interaction design, prompt experiments</dd></div>
+        <div><dt>Timeline</dt><dd>Summer 2026, Cornell course project</dd></div>
+        <div><dt>Model</dt><dd>Xenova/distilgpt2 via Transformers.js</dd></div>
+        <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, AI coding assistance</dd></div>
+      </dl>
+      <div class="actions">
+        <a class="btn primary" href="https://ccjannie16-dev.github.io/next-token-inspector/" target="_blank" rel="noopener">Try it in your browser <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+    <div class="probe" aria-labelledby="probe-h">
+      <p class="label" id="probe-h">Real outputs from the app · top 6 of 50,257 tokens</p>
+      <div class="probe-tabs" role="group" aria-label="Choose a prompt">
+        <button type="button" id="p-flat" aria-pressed="true" data-k="flat">One word: "The"</button>
+        <button type="button" id="p-science" aria-pressed="false" data-k="science">Science sentence</button>
+      </div>
+      <p class="prompt" id="probe-prompt"></p>
+      <ul class="bars" id="probe-bars"></ul>
+      <p class="probe-note" id="probe-note"></p>
+    </div>
+
+    <div class="grid3">
+      <figure><img src="img/nt_initial-state.jpg" alt="App before a run: prompt box, context buttons and empty prediction panel." loading="lazy" width="850" height="788"><figcaption>Start state, with context shifts to try.</figcaption></figure>
+      <figure><img src="img/nt_confident-prediction.jpg" alt="Prediction panel showing that at 60.2 percent for the science prompt, with prompt tokens on the right." loading="lazy" width="850" height="788"><figcaption>Confident: one token dominates.</figcaption></figure>
+      <figure><img src="img/nt_uncertain-flat-prediction.jpg" alt="Prediction panel for the prompt The, where the top token has only 4.2 percent." loading="lazy" width="850" height="788"><figcaption>Uncertain: the distribution is flat.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <section>
+        <h3>The question</h3>
+        <p>A model does not write a sentence at once. For every step it gives a raw score, a logit, to each token in its vocabulary. I wanted people to see those scores, because a confident-looking answer can come from a close race between options.</p>
+        <h3>What I designed</h3>
+        <ul>
+          <li>Logits converted to probabilities with softmax over the full vocabulary, then shown as the top 8 bars so they are easy to compare.</li>
+          <li>The prompt split into tokens, with a dot marking a leading space, so people see how the model reads text.</li>
+          <li>Food, Science and Music context buttons, plus a confidence and spread readout, so the page invites comparison instead of a single result.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Iteration</h3>
+        <p>The first version felt like a results page with no reason to try it twice. I added the context buttons and a comparison sentence, then retested the app myself after each change instead of assuming it still worked.</p>
+        <h3>Why it matters for product design</h3>
+        <p>Showing the margin between the top two guesses is a small pattern that could help people calibrate trust in AI output, and spot when an answer was close to going another way.</p>
+      </section>
+    </div>
+    <p class="pull">After "concluded," the model gave "that" a 60.2% chance. <span>Likely is not the same as certain.</span></p>
+  </article>
+
+  <!-- ===================== AFTERCOLOR ===================== -->
+  <article class="case" id="aftercolor" aria-labelledby="ac-h">
+    <div class="case-head">
+      <p class="label">Case study · Game and narrative design</p>
+      <h2 id="ac-h">Aftercolor</h2>
+      <p class="sum">A short narrative game about a home-care robot, Bibo, who has waited 347 days for a woman who will not come back. By finishing the ordinary acts of care she left behind, the player brings color back to a gray apartment.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Game design, narrative, UX, art direction</dd></div>
+        <div><dt>Timeline</dt><dd>Summer 2026</dd></div>
+        <div><dt>Scope</dt><dd>5 chapters, 6 endings, mini-games, Gallery and story map</dd></div>
+        <div><dt>Built with</dt><dd>HTML, CSS, JavaScript; AI-assisted code, art and music</dd></div>
+      </dl>
+      <div class="actions">
+        <a class="btn primary" href="https://ccjannie16-dev.github.io/aftercolor-play/" target="_blank" rel="noopener">Play in your browser <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+    <figure>
+      <div class="hero-img"><img src="img/ac_cg_02_first_bibo_encounter_v4.jpg" alt="Illustration: Anna stands in a muted blue apartment living room while the small round robot Bibo faces her." width="1400" height="788"></div>
+      <figcaption>First encounter. Anna arrives at the apartment and meets Bibo.</figcaption>
+    </figure>
+
+    <div class="story">
+      <section>
+        <h3>Design rule</h3>
+        <p>Memory does not disappear all at once. First the route becomes longer. Bibo still knows that someone mattered before it can find who she was, and its body keeps her habits after its mind loses the reason for them. Every system in the game follows that rule.</p>
+        <h3>Color as progress</h3>
+        <p>The apartment starts in grayscale. Color returns only when an act of care reaches the living world: cooking her recipe, finishing a puzzle, waiting on the balcony for the cat. Progress is something the player sees in the room, not a number on a bar.</p>
+      </section>
+      <section>
+        <h3>What I did</h3>
+        <ul>
+          <li>Wrote the story bible, branching choices and six endings, and mapped them into a flowchart players can revisit.</li>
+          <li>Designed the mini-games as care tasks, and set up an AI pipeline for code (Codex), illustration (Midjourney with reference locks for consistent characters) and music.</li>
+          <li>Ran playtests with my instructor and revised onboarding, skip controls and the Gallery from the feedback.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="grid2">
+      <figure><img src="img/ac_03-living-room-1440x810.jpg" alt="Grayscale living room scene with Bibo standing by the sofa." loading="lazy" width="1400" height="788"><figcaption>Gray world. The living room before any color returns.</figcaption></figure>
+      <figure><img src="img/ac_cg_06_memory_cooking_together.jpg" alt="Warm illustrated memory of a woman cooking in a blue kitchen while Bibo watches." loading="lazy" width="1400" height="934"><figcaption>A memory of cooking together, unlocked through the kitchen task.</figcaption></figure>
+    </div>
+    <div class="grid3">
+      <figure><img src="img/ac_card_night_teasing_laughing_16x9.jpg" alt="Card night: Anna laughs across a table from Bibo while a cat watches." loading="lazy" width="1400" height="788"><figcaption>Card night mini-game.</figcaption></figure>
+      <figure><img src="img/ac_23-restored-flowchart-1440x810.jpg" alt="Story Map screen showing a branching flowchart of visited scenes." loading="lazy" width="1400" height="788"><figcaption>Story map of branches and endings.</figcaption></figure>
+      <figure><img src="img/ac_cg_10_cat_crosses_threshold.jpg" alt="Illustration of a cat stepping through a sunlit balcony door toward Bibo." loading="lazy" width="1400" height="934"><figcaption>The cat crosses the threshold.</figcaption></figure>
+    </div>
+    <p class="pull">"The tragedy is not that Bibo forgets Abby. <span>It is that sometimes it has to search for her."</span></p>
+  </article>
+
+  <!-- ===================== MORE ===================== -->
+  <section class="more" id="more" aria-labelledby="more-h">
+    <h2 id="more-h">More work</h2>
+    <ul class="more-list">
+      <li>
+        <h3>Library resource discovery<span class="when">Cornell AI Innovation Lab · 2026 to now</span></h3>
+        <p>An LLM-based recommender that suggests 3 to 5 research databases, each with a reason, for Cornell Law Library users. I gather requirements from librarians and turn their answer keys into test cases.</p>
+        <span class="go">In progress</span>
+      </li>
+      <li>
+        <h3>Wearable data explorer<span class="when">Data communication · 2026</span></h3>
+        <p>An interactive Shiny app for exploring personal wearable data, published on Posit Connect.</p>
+        <a class="go" href="https://019c324d-8b98-0531-e8d4-216ec1f14511.share.connect.posit.cloud/" target="_blank" rel="noopener">Open app ↗</a>
+      </li>
+      <li>
+        <h3>Resolutions Tracker<span class="when">Team project · Spring 2026</span></h3>
+        <p>An R, Quarto and Shiny dashboard where people log habits, set goals, earn badges and import Strava data. I built and tested early features and co-wrote the report on chart choices and data limits.</p>
+        <span class="go">Team project</span>
+      </li>
+      <li>
+        <h3>Newcomer retention on Wikipedia<span class="when">Research · 2026 to now</span></h3>
+        <p>A study of whether newcomers whose first edit is reverted within 24 hours stop contributing. I lead data collection.</p>
+        <span class="go">In progress</span>
+      </li>
+      <li>
+        <h3>TCAT rider poster<span class="when">Group assignment</span></h3>
+        <p>A group poster on the Ithaca bus system, designed in Figma.</p>
+        <a class="go" href="https://www.figma.com/design/nKfXmg3Buq8MapKh0RN8pX/Group-4-Assignment---Poster" target="_blank" rel="noopener">View in Figma ↗</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="about-grid">
+      <div>
+        <h2 id="about-h">About</h2>
+        <p>I started in information science at Illinois, worked as a business analyst intern at Hundsun Technologies and a data analysis extern at HP Tech Ventures, and came to Cornell to focus on design and AI.</p>
+        <p>I like projects where research and building happen in the same week: talk to people, sketch, ship a prototype, watch someone use it, fix it. I am looking for UX, product design and AI product roles starting January 2027.</p>
+        <ul class="skills">
+          <li><b>Design and research:</b> interviews, usability testing, interaction design, wireframing, Figma</li>
+          <li><b>AI:</b> LLM prototyping, prompt design, Transformers.js, AI-assisted development, generative media</li>
+          <li><b>Data and code:</b> R (Shiny, Quarto, tidyverse), SQL, HTML, CSS, JavaScript, Git</li>
+        </ul>
+      </div>
+      <div class="contact">
+        <p class="label">Contact</p>
+        <div class="row">
+          <span class="label">Email</span>
+          <div class="email"><code id="email-text">xw785@cornell.edu</code><button type="button" class="copy" id="copy-email">Copy</button></div>
+        </div>
+        <div class="row">
+          <span class="label">Based in</span>
+          <span>Ithaca, New York</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Xinyi Wang · 2026</div></footer>
+
+<script>
+(function(){
+  // Values recorded from my own runs of the app (see walkthrough).
+  var data = {
+    flat: {
+      tokens: ["The"],
+      bars: [["·The",4.2],["\\n",1.5],["·A",1.3],["I",1.2],[".",0.99],[",",0.8]],
+      note: "With one word of context, the top guess has 4.2% and leads by only 2.7 points. The model has no strong reason to pick anything."
+    },
+    science: {
+      tokens: ["The","·scientist","·observed","·the","·results","·and","·concluded"],
+      bars: [["·that",60.2],["·the",10.8],["·it",4.0],[",",2.8],[":",2.3],["·they",1.8]],
+      note: "\"That\" leads \"the\" by 49.3 percentage points. More context made the model far more sure, but still not certain."
+    }
+  };
+  var promptEl = document.getElementById("probe-prompt");
+  var barsEl = document.getElementById("probe-bars");
+  var noteEl = document.getElementById("probe-note");
+  var buttons = document.querySelectorAll(".probe-tabs button");
+  function render(k){
+    var d = data[k];
+    promptEl.innerHTML = d.tokens.map(function(t){return '<span class="tok">'+t+'</span>';}).join("") + '<span class="tok next">'+d.bars[0][0]+'</span>';
+    barsEl.innerHTML = d.bars.map(function(b){
+      return '<li><span class="w">'+b[0]+'</span><span class="track"><span class="fill" style="width:'+Math.max(b[1],0.6)+'%;display:block"></span></span><span class="p">'+(b[1]<1?b[1].toFixed(2):b[1].toFixed(1))+'%</span></li>';
+    }).join("");
+    noteEl.textContent = d.note;
+    buttons.forEach(function(btn){btn.setAttribute("aria-pressed", btn.dataset.k===k ? "true":"false");});
+  }
+  buttons.forEach(function(btn){btn.addEventListener("click", function(){render(btn.dataset.k);});});
+  render("flat");
+
+  var copyBtn = document.getElementById("copy-email");
+  copyBtn.addEventListener("click", function(){
+    var text = document.getElementById("email-text").textContent;
+    var done = function(){copyBtn.textContent="Copied";setTimeout(function(){copyBtn.textContent="Copy";},1600);};
+    var fallback = function(){var r=document.createRange();r.selectNodeContents(document.getElementById("email-text"));var s=window.getSelection();s.removeAllRanges();s.addRange(r);copyBtn.textContent="Selected";};
+    try{ navigator.clipboard.writeText(text).then(done, fallback); }catch(e){ fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
